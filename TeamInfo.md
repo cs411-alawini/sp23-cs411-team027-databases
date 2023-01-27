@@ -7,14 +7,14 @@
 | ----------- | ---------------------- |
 | TeamID      |         Team-027       |
 | TeamName    |        Databases       |
-| Captain     |             ?          |
-| Captain     |             ?          |
+| Captain     |        Kaan Yigi       |
+| Captain     |   Kyigit2@illinois.edu |
 | Member1     |      Jennifer Gaw      |
 | Member1     |  jmgaw2@illinois.edu   |
-| Member2     |             ?          |
-| Member2     |             ?          |
-| Member3     |             ?          |
-| Member3     |             ?          |
+| Member2     |       Michael Ma       |
+| Member2     |  chiuyin2@illinois.edu |
+| Member3     |    Divya MacHineni     |
+| Member3     |  Divyam4@illinois.edu  |
 
 ## Project Information
 
