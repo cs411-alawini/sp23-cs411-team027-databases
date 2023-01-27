@@ -5,12 +5,12 @@
 
 |   Info      |        Description     |
 | ----------- | ---------------------- |
-| TeamID      |        Team-027        |
+| TeamID      |         Team-027       |
 | TeamName    |        Databases       |
 | Captain     |             ?          |
 | Captain     |             ?          |
-| Member1     |             ?          |
-| Member1     |             ?          |
+| Member1     |      Jennifer Gaw      |
+| Member1     |  jmgaw2@illinois.edu   |
 | Member2     |             ?          |
 | Member2     |             ?          |
 | Member3     |             ?          |
