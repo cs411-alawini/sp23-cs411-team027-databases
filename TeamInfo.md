@@ -6,7 +6,7 @@
 |   Info      |        Description     |
 | ----------- | ---------------------- |
 | TeamID      |         Team-027       |
-| TeamName    |        Team027         |
+| TeamName    |        UpdatedTeamName |
 | Captain     |        Kaan Yigi       |
 | Captain     |   Kyigit2@illinois.edu |
 | Member1     |      Jennifer Gaw      |
