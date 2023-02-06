@@ -6,7 +6,7 @@
 |   Info      |        Description     |
 | ----------- | ---------------------- |
 | TeamID      |         Team-027       |
-| TeamName    |        Databases       |
+| TeamName    |        Team027         |
 | Captain     |        Kaan Yigi       |
 | Captain     |   Kyigit2@illinois.edu |
 | Member1     |      Jennifer Gaw      |
@@ -26,4 +26,5 @@
 
 ## Project Summary
 
-This is a summary of the project!
+Our application will aim to give users recommendations on new Steam games as well as give them analytics all steam games, giving users the ability to analyze and see trends in gaming. This would involve trends such as what type of game is popular depending on the time period, also the popularity of different game types by region. The user can put in specific games that they enjoy playing and our application can give them recommendations. 
+The user can also sort these recommendations based on price, genre as well as how similar each recommendation is to games they have previously told the application they enjoyed. The user could give feedback to the application by telling the application which recommendations the user liked and which ones the user did not like to improve the game recommendation system.
