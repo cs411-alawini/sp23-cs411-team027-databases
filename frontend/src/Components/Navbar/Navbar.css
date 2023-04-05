@@ -1,0 +1,30 @@
+h1{
+    margin-right:50px;
+    color: black;
+}
+
+.left{
+    display:flex;
+    flex-direction:row;
+    float: right;  
+}
+
+.right {
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    float: left;  
+    overflow: scroll;
+    flex-shrink:1;
+    padding:0px;
+}
+
+.logo-img{
+    height: 70px;
+}
+
+.navbar{
+    color:#672020;
+    margin-bottom: 70px;
+    max-height: 50%; 
+}
