@@ -33,21 +33,20 @@ const router = createBrowserRouter(
 export default function App() {
     const [userName, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
+    const [actionGames, setActionGames] = useState([])
+    const [error, setError] = useState("")
 
-    // useEffect(() => {
-    //     async function requests() {
-    //       await axios.get('http://localhost:3000/')
-    //         .then(result => {
-    //           setCategorizedRecipes(result.data["all lists"])
-    //           setRetrievedRecipes(true)
-    //         }) 
-    //         .catch(e=>setError(e))
-    //     }
-    //     if (!retrievedRecipes) {
-    //       requests()
-    //     }
-    //   // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
+    useEffect(() => {
+        console.log("Hello")
+        async function requests() {
+          await axios.get('http://localhost:3001/test')
+            .then(result => {
+                console.log(result)
+            }) 
+            .catch(e=>setError(e))
+        }
+        requests()
+    }, [])
 
     return(
         <div className="app">

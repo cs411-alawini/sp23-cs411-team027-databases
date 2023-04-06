@@ -1,8 +1,13 @@
 const express = require('express');
+const cors = require('cors');
+
 const mysql = require('mysql');
 var connection  = require('express-myconnection'); 
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 var config = {
     user: "cs411",
@@ -11,12 +16,14 @@ var config = {
     
 }
 
-var connection = mysql.createConnection({
-host     : '34.28.235.128',
-user     : 'cs411',
-password : '',
-database : 'data'
-});
+var connection = mysql.createConnection(
+    {
+        host     : '34.28.235.128',
+        user     : 'cs411',
+        password : '',
+        database : 'data'
+    }
+);
 
 
 
@@ -24,8 +31,9 @@ database : 'data'
 connection.connect()
 
 app.get('/test',(req,res)=>{
-var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 10', function (err, rows, fields) {
-res.send(rows)
+    var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 10', function (err, rows, fields) {
+    res.send(rows)
+    console.log(rows)
 
 })
 
@@ -38,5 +46,5 @@ res.send(rows)
 //console.log('The solution is: ', rows)
 //})
 
- app.listen(3000, ()=> {
-      console.log(`app is running on port 3000`);});
+ app.listen(3001, ()=> {
+      console.log(`app is running on port 3001`);});
