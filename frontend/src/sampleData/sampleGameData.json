@@ -1,24 +1,12 @@
 {
-    "games":[
-        {
-            "gameName":"Minecraft",
-            "gameImg": "https://asset.vg247.com/minecraft-360-logo.jpg/BROK/thumbnail/1200x900/quality/100/minecraft-360-logo.jpg",
-            "gameGenreList": ["family-friendly","beginner-friendly","most popular"]
-        },
-        {
-            "gameName":"Fortnite",
-            "gameImg": "data:image/jpeg;base64,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",
-            "gameGenreList": ["action", "family-friendly"]
-        },
-        {
-            "gameName":"Tetris",
-            "gameImg": "https://play-lh.googleusercontent.com/za2Nu_qjMw5GzWfbzet4zeiZT1xvJlTRi4NJzGpJWX9grxFAAko5dGBwe7qeqK01THw",
-            "gameGenreList": ["family-friendly","beginner-friendly"]
-        },
-        {
-            "gameName":"Overwatch",
-            "gameImg": "https://upload.wikimedia.org/wikipedia/en/thumb/5/51/Overwatch_cover_art.jpg/220px-Overwatch_cover_art.jpg",
-            "gameGenreList": ["most popular","action"]
-        }
+    "games": [
+        { "GameName": "'Counter-Strike'" },
+        { "GameName": "'Team Fortress Classic'" },
+        { "GameName": "'Day of Defeat'" },
+        { "GameName": "'Deathmatch Classic'" },
+        { "GameName": "Half-Life: Opposing Force" },
+        { "GameName": "Ricochet" },
+        { "GameName": "Half-Life" }
     ]
 }
+ 
