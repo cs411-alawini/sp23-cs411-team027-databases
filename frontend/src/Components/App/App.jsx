@@ -18,18 +18,6 @@ import AdvancedQuery1 from "../AdvancedQuery/AdvancedQuery1"
 import AdvancedQuery2 from "../AdvancedQuery/AdvancedQuery2"
 
 
-const router = createBrowserRouter(
-    createRoutesFromElements (
-        <Route path = "/" element ={<RootLayout />}>
-            <Route index element={<Home />}/>
-            <Route path = "navbar" element={<Navbar />} />
-            <Route path = "profile" element={<Profile />} />
-            <Route path = "advancedQuery1" element={<AdvancedQuery1 />} />
-            <Route path = "advancedQuery2" element={<AdvancedQuery2 />} />
-        </Route>
-    )
-)
-
 export default function App() {
     const [userName, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
@@ -42,11 +30,25 @@ export default function App() {
           await axios.get('http://localhost:3001/test')
             .then(result => {
                 console.log(result)
+                console.log(result['data'])
+                setActionGames(result["data"])
             }) 
             .catch(e=>setError(e))
         }
         requests()
     }, [])
+
+    const router = createBrowserRouter(
+        createRoutesFromElements (
+            <Route path = "/" element ={<RootLayout />}>
+                <Route index element={<Home actionGames={actionGames}/>}/>
+                <Route path = "navbar" element={<Navbar />} />
+                <Route path = "profile" element={<Profile />} />
+                <Route path = "advancedQuery1" element={<AdvancedQuery1 />} />
+                <Route path = "advancedQuery2" element={<AdvancedQuery2 />} />
+            </Route>
+        )
+    )
 
     return(
         <div className="app">

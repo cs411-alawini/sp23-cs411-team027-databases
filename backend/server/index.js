@@ -16,26 +16,20 @@ var config = {
     
 }
 
-var connection = mysql.createConnection(
-    {
-        host     : '34.28.235.128',
-        user     : 'cs411',
-        password : '',
-        database : 'data'
-    }
-);
-
-
-
+var connection = mysql.createConnection({
+    host     : '34.28.235.128',
+    user     : 'cs411',
+    password : '',
+    database : 'data'
+});
 
 connection.connect()
 
 app.get('/test',(req,res)=>{
     var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 10', function (err, rows, fields) {
-    res.send(rows)
-    console.log(rows)
-
-})
+        res.send(rows)
+        console.log(rows)
+    })
 
 })
 
