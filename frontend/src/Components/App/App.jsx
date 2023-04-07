@@ -27,7 +27,7 @@ export default function App() {
     useEffect(() => {
         console.log("Hello")
         async function requests() {
-          await axios.get('http://localhost:3001/test')
+          await axios.get('http://localhost:3001/display')
             .then(result => {
                 console.log(result)
                 console.log(result['data'])
