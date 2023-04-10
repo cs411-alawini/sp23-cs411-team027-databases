@@ -57,10 +57,4 @@ export default function App() {
     )
 }
 
-{/* <BrowserRouter>
-    <main>
-        console.log("Hi from before calling navbar") 
-        <Navbar userName = {userName} setUsername = {setUsername} firstName = {firstName} setFirstName = {setFirstName}/>
-        console.log("Hi from after calling navbar") 
-    </main>
-</BrowserRouter>  */}
+
