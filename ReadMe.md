@@ -9,4 +9,4 @@ Michael Ma       Chiuyin2
 
 Divya MacHineni  Divyam4
 
-Kaan Yigi        Kyigit2
+Kaan Yigit        Kyigit2
