@@ -31,7 +31,7 @@ export default function Profile(props) {
    
   
   console.log(data2)
-  (() => {setdef(setData2,name)})
+  useEffect(() => {setdef(setData2,name)})
 
 
 
