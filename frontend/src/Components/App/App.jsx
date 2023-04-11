@@ -16,6 +16,9 @@ import Home from "../Home/Home"
 import RootLayout from "../RootLayout"
 import AdvancedQuery1 from "../AdvancedQuery/AdvancedQuery1"
 import AdvancedQuery2 from "../AdvancedQuery/AdvancedQuery2"
+import GameProfile from "../GameProfile/GameProfile"
+
+
 
 
 export default function App() {
@@ -43,9 +46,12 @@ export default function App() {
             <Route path = "/" element ={<RootLayout />}>
                 <Route index element={<Home actionGames={actionGames}/>}/>
                 <Route path = "navbar" element={<Navbar />} />
-                <Route path = "profile" element={<Profile />} />
+                <Route path = "game-profile" element={<GameProfile />} />
                 <Route path = "advancedQuery1" element={<AdvancedQuery1 />} />
                 <Route path = "advancedQuery2" element={<AdvancedQuery2 />} />
+                <Route path = "profile" element={<Profile />} />
+
+
             </Route>
         )
     )
