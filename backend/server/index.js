@@ -75,13 +75,15 @@ app.get('/adv2',(req,res)=> {
     }) 
 })
 
-/*
-app.get('/basic',(req,res)=> {
-    var query = connection.query('SELECT GameName, Rating, Description, FROM GameData', function (err, rows, fields) {
-         res.send(rows)
+
+app.get('/adv3',(req,res)=> {
+    var query = connection.query('SELECT GameName, Rating, Description, Reviews FROM GameData Where GameName = ? LIMIT 20', req.params.foo , function (err, rows, fields) {
+        console.log("Starting Page: ", req.params.foo);
+        res.send(rows)
+          
      }) 
  })
-*/
+
 
 
 
