@@ -7,6 +7,7 @@ import  {useLocation, useParams}  from 'react-router-dom'
 import {SimpleGrid, Box, Button} from '@chakra-ui/react'
 
 
+
 async function setdef(setData2,name) {
   await axios.get('http://localhost:3001/adv3/'+name)
     .then(result => {
@@ -31,7 +32,7 @@ export default function Profile(props) {
    
   
   console.log(data2)
-  useEffect(() => {setdef(setData2,name)})
+  useEffect(() => {setdef(setData2,name)},[])
 
 
 
@@ -41,34 +42,30 @@ export default function Profile(props) {
       
       <div>
         <div>
-        <Button className="AQ1_button" colorTheme='blue' variant='solid' useEffect={()=>setdef(setData2,name)}>
-                Yes!
-            </Button> 
-
-        
-        
                 </div>
         <div className="container">
-        <img src={'/frontend/src/logo.svg'} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
+        <img src={'/frontend/public/logo192.png'} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
         </div>
               <div className="kant">
                 <h1>{name} </h1>
               </div>
 
               {data2.map(item => 
-                            <Box bg="white" height="200px" border="1px solid" >
-                                {["Game Name: ", item.GameName, " ; Rating: ", item.Rating, " ; Decription: ", item.Description]}
-                            </Box>
+              <div>     
+              <div className="kant">
+              <h1>Rating: {item.Rating} /100</h1>
+          </div>
+          <div className="kant">
+              <h1>Genre: {} </h1>
+          </div>
+        <div className="paragraphy">
+            <p>{item.Description} </p>
+        </div>
+        </div>
+                            
+                            
                         )}
-              <div className="kant">
-                  <h1>Rating: {} /5</h1>
-              </div>
-              <div className="kant">
-                  <h1>Genre: {} </h1>
-              </div>
-            <div className="paragraphy">
-                <p>{} </p>
-            </div>
+              
 
 
       

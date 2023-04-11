@@ -15,7 +15,7 @@ export default function Navbar(props) {
         {/* avatar for person's name, linking to profile */}
         <Box bg="gray.200" p="10px">M</Box> 
         <Text>divya@email.com</Text>
-        <Button colorScheme="purple">Logout</Button>
+        <Link colorScheme="purple" to={'/login'}>Logout</Link>
       </HStack>
     </Flex>
   )
