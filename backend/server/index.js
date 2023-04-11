@@ -76,9 +76,9 @@ app.get('/adv2',(req,res)=> {
 })
 
 
-app.get('/adv3',(req,res)=> {
+app.get('/adv3/:foo',(req,res)=> {
     var query = connection.query('SELECT GameName, Rating, Description, Reviews FROM GameData Where GameName = ? LIMIT 20', req.params.foo , function (err, rows, fields) {
-        console.log("Starting Page: ", req.params.foo);
+        console.log("Starting Page: ", req.params['foo']);
         res.send(rows)
           
      }) 
