@@ -41,6 +41,8 @@ export default function App() {
         requests()
     }, [])
 
+    console.log(actionGames)
+
     const router = createBrowserRouter(
         createRoutesFromElements (
             <Route path = "/" element ={<RootLayout />}>
@@ -50,8 +52,6 @@ export default function App() {
                 <Route path = "advancedQuery1" element={<AdvancedQuery1 />} />
                 <Route path = "advancedQuery2" element={<AdvancedQuery2 />} />
                 <Route path = "profile" element={<Profile />} />
-
-
             </Route>
         )
     )

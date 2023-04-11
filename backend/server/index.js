@@ -25,9 +25,19 @@ var connection = mysql.createConnection({
 connection.connect()
 
 app.get('/search/:game',(req,res)=>{
-    var query = connection.query('SELECT GameName, Price, Description FROM GameData WHERE GameName LIKE ?  LIMIT 50', req.params.game, function (err, rows, fields) {
+    var query = connection.query('SELECT GameName, Price, Description FROM GameData WHERE GameName LIKE ?  LIMIT 50', [req.params.game], function (err, rows, fields) {
         res.send(rows)
-        console.log(req.params.game)
+
+        if(err) {
+            console.log(err);
+        }
+    })
+})
+
+app.get('/display',(req,res)=>{
+    var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
+        res.send(rows)
+        // console.log(rows)
     })
 })
 
@@ -41,7 +51,7 @@ app.get('/create/:username/:pw',(req,res)=>{
 })
  
 app.get('/get/:username',(req,res)=>{
-    var query = connection.query('SELECT * FROM User WHERE userName = ? ',req.params.username, function (err, rows, fields) {
+    var query = connection.query('SELECT * FROM User WHERE userName = ? ',[req.params.username], function (err, rows, fields) {
         res.send(rows)
     })
 })
