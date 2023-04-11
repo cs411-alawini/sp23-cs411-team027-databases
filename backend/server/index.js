@@ -75,6 +75,15 @@ app.get('/adv2',(req,res)=> {
     }) 
 })
 
+/*
+app.get('/basic',(req,res)=> {
+    var query = connection.query('SELECT GameName, Rating, Description, FROM GameData', function (err, rows, fields) {
+         res.send(rows)
+     }) 
+ })
+*/
+
+
 
 app.listen(3001, ()=> {
       console.log(`app is running on port 3001`);
