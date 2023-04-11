@@ -27,7 +27,7 @@ connection.connect()
 app.get('/display',(req,res)=>{
     var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
         res.send(rows)
-        console.log(rows)
+        // console.log(rows)
     })
 })
 
@@ -63,7 +63,7 @@ app.get('/adv1',(req,res)=>{
         'SELECT DISTINCT Price, GameName, COUNT(GameName) FROM GameData NATURAL JOIN GenreData WHERE Price < 10 AND (Multiplayer = "TRUE" OR Action = "TRUE") GROUP BY Price,GameName UNION SELECT DISTINCT Price, GameName, COUNT(GameName) FROM GameData NATURAL JOIN GenreData WHERE Price > 30 AND SinglePlayer = "TRUE" GROUP BY Price,GameName ORDER BY Price DESC LIMIT 15'
     , function (err, rows, fields) {
         res.send(rows)
-        console.log(rows)
+        // console.log(rows)
         console.log(err)   
     })
 })

@@ -5,7 +5,7 @@ import {useState, useEffect, Box, SimpleGrid, Button} from "react"
 import "./Profile.css";
 import { useLocation } from 'react-router-dom'
 
-import logo from '/Users/kaanyigit/Documents/sp23-cs411-team027-databases/frontend/src/logo.svg'; // Tell webpack this JS file uses this image
+import logo from '../../logo.svg'; // Tell webpack this JS file uses this image
 
 
 
