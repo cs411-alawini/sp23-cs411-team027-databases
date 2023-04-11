@@ -24,10 +24,10 @@ var connection = mysql.createConnection({
 
 connection.connect()
 
-app.get('/display',(req,res)=>{
-    var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
+app.get('/search/:game',(req,res)=>{
+    var query = connection.query('SELECT GameName, Price, Description FROM GameData WHERE GameName LIKE ?  LIMIT 50', req.params.game, function (err, rows, fields) {
         res.send(rows)
-        // console.log(rows)
+        console.log(req.params.game)
     })
 })
 
@@ -83,7 +83,6 @@ app.get('/adv3',(req,res)=> {
           
      }) 
  })
-
 
 
 

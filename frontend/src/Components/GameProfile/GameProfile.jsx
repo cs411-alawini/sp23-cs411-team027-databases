@@ -39,9 +39,9 @@ export default function Profile(props) {
       
       <div>
         <div>
-        <Button className="AQ1_button" colorTheme='blue' variant='solid' onClick={()=>setdef(setData2,name)}>
+        {/* <Button className="AQ1_button" colorTheme='blue' variant='solid' onClick={()=>setdef(setData2,name)}>
                 Yes!
-            </Button>
+            </Button> */}
 
         
         
