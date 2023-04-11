@@ -8,12 +8,9 @@ import {SimpleGrid, Box, Button} from '@chakra-ui/react'
 
 
 async function setdef(setData2,name) {
-  await axios.get('http://localhost:3001/adv3', {
-    params: {
-      foo: name
-    }
-  })
+  await axios.get('http://localhost:3001/adv3/'+name)
     .then(result => {
+
         console.log(result['data'])
         setData2(result['data'])
     }) 
@@ -34,14 +31,19 @@ export default function Profile(props) {
    
   
   console.log(data2)
+  useEffect(() => {setdef(setData2,name)})
+
+
+
+
     return (
       
       
       <div>
         <div>
-        {/* <Button className="AQ1_button" colorTheme='blue' variant='solid' onClick={()=>setdef(setData2,name)}>
+        <Button className="AQ1_button" colorTheme='blue' variant='solid' useEffect={()=>setdef(setData2,name)}>
                 Yes!
-            </Button> */}
+            </Button> 
 
         
         
@@ -52,6 +54,12 @@ export default function Profile(props) {
               <div className="kant">
                 <h1>{name} </h1>
               </div>
+
+              {data2.map(item => 
+                            <Box bg="white" height="200px" border="1px solid" >
+                                {["Game Name: ", item.GameName, " ; Rating: ", item.Rating, " ; Decription: ", item.Description]}
+                            </Box>
+                        )}
               <div className="kant">
                   <h1>Rating: {} /5</h1>
               </div>
@@ -59,7 +67,7 @@ export default function Profile(props) {
                   <h1>Genre: {} </h1>
               </div>
             <div className="paragraphy">
-                <p1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sapien sit amet risus pretium, nec pulvinar tortor scelerisque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eget nulla non mi fringilla volutpat. Donec in vestibulum erat. Maecenas non lorem id leo rutrum tempor. Sed vestibulum eros sit amet aliquam convallis.</p1>
+                <p>{} </p>
             </div>
 
 
