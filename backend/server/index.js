@@ -34,6 +34,17 @@ app.get('/search/:game',(req,res)=>{
     })
 })
 
+
+app.get('/searchUser/:game',(req,res)=>{
+    var query = connection.query('SELECT userName FROM User WHERE userName = ?', [req.params.game], function (err, rows, fields) {
+        res.send(rows)
+
+        if(err) {
+            console.log(err);
+        }
+    })
+})
+
 app.get('/display',(req,res)=>{
     var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
         res.send(rows)
@@ -45,7 +56,7 @@ app.get('/create/:username/:pw',(req,res)=>{
      let p = req.params.username;
      let w = req.params.pw;
      var query = connection.query('INSERT INTO User (userName, password) VALUES (?, ?)',[p, w], function (err, rows, fields) {
-        console.log(err)
+     //   console.log(err)
         console.log(rows)
     })
 })
@@ -63,7 +74,7 @@ app.get('/update/:username/:password',(req,res)=>{
 })
 
 app.get('/delete/:username',(req,res)=>{
-    var query = connection.query('DELETE FROM User WHERE userName = ? ',req.params.username, function (err, rows, fields) {
+    var query = connection.query('DELETE FROM User WHERE userName = ?',req.params.username, function (err, rows, fields) {
         res.send(rows)
     })
 })

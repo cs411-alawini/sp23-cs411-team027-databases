@@ -12,6 +12,8 @@ export default function Register(props) {
   function handleClick() {
     console.log(uRef.current.value);
     console.log(pasRef.current.value);
+        let x=document.getElementsByClassName("register_update");
+        x[0].innerText= uRef.current.value + "'s account created!";
     /*let input1 = document.getElementById('firstName');
          // clear the input field.
          input1.value = "";
@@ -24,8 +26,8 @@ export default function Register(props) {
     await axios.get('http://localhost:3001/create/'+user+'/'+pass)
       .then(result => {
   
-          console.log('success')
-
+        console.log("AAA");
+        
           
       }) 
       .catch(e=>console.log(e))
@@ -34,6 +36,8 @@ export default function Register(props) {
   
   return(
     <div className="form">
+        <h2 className = "register_update"></h2>
+
         <div className="form-body">
             <div className="username">
                 <label className="form__label" for="Username">Username:   </label>

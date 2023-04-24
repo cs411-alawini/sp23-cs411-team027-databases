@@ -24,8 +24,8 @@ export default function Profile(props) {
     await axios.get('http://localhost:3001/delete/'+user)
       .then(result => {
   
-          console.log('success')
-          
+          let x=document.getElementsByClassName("update_profile");
+        x[0].innerText= user + "'s account deleted!";
   
   
           
@@ -36,7 +36,8 @@ export default function Profile(props) {
     await axios.get('http://localhost:3001/update/'+user + '/' + pw)
       .then(result => {
   
-          console.log('success update')
+          let x=document.getElementsByClassName("update_profile");
+        x[0].innerText= user + "'s password updated!";
           
   
   
@@ -59,6 +60,8 @@ export default function Profile(props) {
       <div>
         <div>
         <h1>Update Password</h1>
+            
+        <h2 className = "update_profile"></h2>
         <input className="form__input" ref={urRef} type="text" id="firstName" placeholder="Username"/>
         <input className="form__input" ref={pRef} type="text" id="pw" placeholder="New Password"/>
 

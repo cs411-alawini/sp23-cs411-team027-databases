@@ -15,10 +15,17 @@ export default function Login(props) {
     cUser(uRef.current.value,pasRef.current.value)
   }
   async function cUser(user,pass) {
-    await axios.get('http://localhost:3001/create/'+user+'/'+pass)
+    await axios.get('http://localhost:3001/searchUser/'+user)
       .then(result => {
-  
-          console.log('success')
+          let x=document.getElementsByClassName("login_update");
+        console.log(result.data)
+        if (result.data.length == 0) {
+                      x[0].innerText= "user not found!"
+
+          } else {
+                      x[0].innerText="user " +user + " logged in!";  
+
+          }
           
           
       }) 
@@ -28,6 +35,7 @@ export default function Login(props) {
   
   return(
     <div className="form">
+        <div className = "login_update"></div>
         <div className="form-body">
             <div className="username">
                 <label className="form__label" for="Username">Username:   </label>
