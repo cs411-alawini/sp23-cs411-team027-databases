@@ -25,7 +25,8 @@ var connection = mysql.createConnection({
 connection.connect()
 
 app.get('/search/:game',(req,res)=>{
-    var query = connection.query('SELECT GameName, Price, Description FROM GameData WHERE GameName LIKE ?  LIMIT 50', [req.params.game], function (err, rows, fields) {
+    var query = connection.query('SELECT GameName, Price, Description, Image FROM GameInfo WHERE GameName LIKE ?  LIMIT 50', [req.params.game], function (err, rows, fields) {
+        console.log(rows)
         res.send(rows)
 
         if(err) {
@@ -46,9 +47,23 @@ app.get('/searchUser/:game',(req,res)=>{
 })
 
 app.get('/display',(req,res)=>{
-    var query = connection.query('SELECT DISTINCT GameName FROM GameData NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
+    var query = connection.query('SELECT DISTINCT GameName FROM GameInfo NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
         res.send(rows)
         // console.log(rows)
+    })
+})
+
+//TO FINISH
+app.get('/search/highestRatedGames',(req,res)=>{
+    var query = connection.query(
+        'SELECT GameName, Price, Description FROM GameInfo WHERE GameName LIKE ?  LIMIT 50'
+        , [req.params.game], function (err, rows, fields) {
+            
+        res.send(rows)
+
+        if(err) {
+            console.log(err);
+        }
     })
 })
 
@@ -81,7 +96,7 @@ app.get('/delete/:username',(req,res)=>{
 
 app.get('/adv1',(req,res)=>{
     var query = connection.query(
-        'SELECT DISTINCT Price, GameName, COUNT(GameName) FROM GameData NATURAL JOIN GenreData WHERE Price < 10 AND (Multiplayer = "TRUE" OR Action = "TRUE") GROUP BY Price,GameName UNION SELECT DISTINCT Price, GameName, COUNT(GameName) FROM GameData NATURAL JOIN GenreData WHERE Price > 30 AND SinglePlayer = "TRUE" GROUP BY Price,GameName ORDER BY Price DESC LIMIT 15'
+        'SELECT DISTINCT Price, GameName, COUNT(GameName) FROM GameInfo NATURAL JOIN GenreData WHERE Price < 10 AND (Multiplayer = "TRUE" OR Action = "TRUE") GROUP BY Price,GameName UNION SELECT DISTINCT Price, GameName, COUNT(GameName) FROM GameInfo NATURAL JOIN GenreData WHERE Price > 30 AND SinglePlayer = "TRUE" GROUP BY Price,GameName ORDER BY Price DESC LIMIT 15'
     , function (err, rows, fields) {
         res.send(rows)
         // console.log(rows)
@@ -91,15 +106,15 @@ app.get('/adv1',(req,res)=>{
 
 
 app.get('/adv2',(req,res)=> {
-   var query = connection.query('SELECT GameName, Rating, RequiredAge, COUNT(GameName) FROM GameData WHERE GameName IN (SELECT GameName FROM GameData NATURAL JOIN GenreData WHERE Multiplayer = "TRUE" AND Action = "TRUE") GROUP BY Rating, RequiredAge, GameName ORDER BY Rating DESC, RequiredAge DESC LIMIT 15', function (err, rows, fields) {
+   var query = connection.query('SELECT GameName, Rating, RequiredAge, COUNT(GameName) FROM GameInfo WHERE GameName IN (SELECT GameName FROM GameInfo NATURAL JOIN GenreData WHERE Multiplayer = "TRUE" AND Action = "TRUE") GROUP BY Rating, RequiredAge, GameName ORDER BY Rating DESC, RequiredAge DESC LIMIT 15', function (err, rows, fields) {
         res.send(rows)
     }) 
 })
 
 
 app.get('/adv3/:foo',(req,res)=> {
-    var query = connection.query('SELECT GameName, Rating, Description, Reviews FROM GameData Where GameName = ? LIMIT 20', req.params.foo , function (err, rows, fields) {
-        console.log("Starting Page: ", req.params['foo']);
+    var query = connection.query('SELECT GameName, Rating, Description, Reviews, Image FROM GameInfo Where GameName = ? LIMIT 20', req.params.foo , function (err, rows, fields) {
+        console.log("Starting Page: ", rows);
         res.send(rows)
           
      }) 

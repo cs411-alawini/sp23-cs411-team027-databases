@@ -34,41 +34,28 @@ export default function Profile(props) {
   console.log(data2)
   useEffect(() => {setdef(setData2,name)},[])
 
-
-
-
     return (
       
-      
       <div>
-        <div>
-                </div>
-        <div className="container">
-        <img src={'/frontend/public/logo192.png'} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
-        </div>
+        {data2.map(item => 
+            <div>
+              <div className="container">
+                <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
+              </div>     
               <div className="kant">
                 <h1>{name} </h1>
               </div>
-
-              {data2.map(item => 
-              <div>     
               <div className="kant">
-              <h1>Rating: {item.Rating} /100</h1>
-          </div>
-          <div className="kant">
-              <h1>Genre: {} </h1>
-          </div>
-        <div className="paragraphy">
-            <p>{item.Description} </p>
-        </div>
-        </div>
-                            
-                            
-                        )}
-              
-
-
-      
+                  <h1>Rating: {item.Rating} /100</h1>
+              </div>
+              <div className="kant">
+                  <h1>Genre: {} </h1>
+              </div>
+              <div className="paragraphy">
+                  <p>{item.Description} </p>
+              </div>    
+            </div>          
+        )}
       </div>
     )
 }
