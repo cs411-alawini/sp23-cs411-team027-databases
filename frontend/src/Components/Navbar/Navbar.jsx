@@ -3,25 +3,8 @@ import "./Navbar.css"
 import { Link } from "react-router-dom"
 import {useEffect} from "react"
 import {Flex,Box,Heading,Button,Text,Spacer,HStack} from "@chakra-ui/react"
-import loggedIn from '../../index.js'
-
 
 export default function Navbar(props) {
-   
- if (loggedIn.logged) {
-     
-     return (
-    <Flex as="nav" p ="10px" alignItems="center" gap="100px" >
-      <Heading as="h1">Steam Recommender</Heading>
-
-      <Spacer />
-
-      <HStack spacing="20px"> {/*horizontically stacks all elements and puts spacing between*/}
-        {/* avatar for person's name, linking to profile */}
-        <Box bg="gray.200" p="10px">M</Box> 
-      </HStack>
-    </Flex>)
- }else {
   return (
     <Flex as="nav" p ="10px" alignItems="center" gap="100px" >
       <Heading as="h1">Steam Recommender</Heading>
@@ -31,10 +14,11 @@ export default function Navbar(props) {
       <HStack spacing="20px"> {/*horizontically stacks all elements and puts spacing between*/}
         {/* avatar for person's name, linking to profile */}
         <Box bg="gray.200" p="10px">M</Box> 
-        <Link colorScheme="purple" to={'/login'}>Login</Link>
+        <Text>divya@email.com</Text>
+        <Link colorScheme="purple" to={'/login'}>Logout</Link>
       </HStack>
     </Flex>
-  )}
+  )
 }
 
 // export default function Navbar(props) {

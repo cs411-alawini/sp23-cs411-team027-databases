@@ -22,8 +22,8 @@ import Register from "../Register/Register"
 
 
 
+
 export default function App() {
-    
     const [userName, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
     const [actionGames, setActionGames] = useState([])
@@ -31,16 +31,11 @@ export default function App() {
     const [error, setError] = useState("")
 
     useEffect(() => {
-       // console.log("Hello")
+        console.log("Hello")
         async function requests() {
           await axios.get('http://localhost:3001/display')
             .then(result => {
-<<<<<<< HEAD
-            //    console.log(result)
-              //  console.log(result['data'])
-=======
                 console.log(result['data'])
->>>>>>> 73b75545cfac2eaf53e1c25a37b3502b5775a8e3
                 setActionGames(result["data"])
             }) 
             .catch(e=>setError(e))
@@ -48,7 +43,7 @@ export default function App() {
         requests()
     }, [])
 
-    //console.log(actionGames)
+    console.log(actionGames)
 
     const router = createBrowserRouter(
         createRoutesFromElements (

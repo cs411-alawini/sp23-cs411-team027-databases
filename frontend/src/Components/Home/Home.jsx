@@ -21,7 +21,7 @@ export default function Home(props) {
     const [maxPrice,setMaxPrice] = useState(500)
 
     const handleOnSearchSubmit = (event) => {
-     // console.log("searchInput", event.target.value)
+      console.log("searchInput", event.target.value)
       setSearchInput(event.target.value)
       handleOnSearchSubmitFxn(event)
     }

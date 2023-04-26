@@ -12,54 +12,12 @@ async function setdef(setData2,name) {
   await axios.get('http://localhost:3001/gameInfo/'+name)
     .then(result => {
 
-       // console.log(result['data'])
+        console.log(result['data'])
         setData2(result['data'])
     }) 
     .catch(e=>console.log(e))
 }
 
-<<<<<<< HEAD
-
-
-export default function Profile(props) {
-    console.log(props)
-    
-    const location = useLocation()
-    const name  = location.state.name
-   
-
-    const [data2, setData2] = useState([])
-    const go = {'name': name}
-   
-  
- // console.log(data2)
-  useEffect(() => {setdef(setData2,name)},[])
-
-    return (
-      
-      <div>
-        {data2.map(item => 
-            <div>
-              <div className="container">
-                <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
-              </div>     
-              <div className="kant">
-                <h1>{name} </h1>
-              </div>
-              <div className="kant">
-                  <h1>Rating: {item.Rating} /100</h1>
-              </div>
-              <div className="kant">
-                  <h1>Genre: {} </h1>
-              </div>
-              <div className="paragraphy">
-                  <p>{item.Description} </p>
-              </div>    
-            </div>          
-        )}
-      </div>
-    )
-=======
 async function getGameReviews(setGameReviews,name) {
   await axios.get('http://localhost:3001/gameReviews/'+name)
     .then(result => {
@@ -128,7 +86,6 @@ export default function Profile(props) {
       )}
     </div>
   )
->>>>>>> 73b75545cfac2eaf53e1c25a37b3502b5775a8e3
 }
 
 
