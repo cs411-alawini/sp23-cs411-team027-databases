@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import loggedIn from '../../index.js'
 
 
 
@@ -55,7 +55,10 @@ export default function Profile(props) {
     
 
   }
-  
+  if (loggedIn.logged == false) {
+     return (<h1>Log in first!</h1>);
+  }
+else {    
     return (
       <div>
         <div>
@@ -77,6 +80,6 @@ export default function Profile(props) {
         
       </div>
     )
-
+}
     
 }

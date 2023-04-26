@@ -4,14 +4,13 @@ import {useRef} from 'react';
 import axios from 'axios';
 
 import "./Login.css"
-
+import loggedIn from '../../index.js'
 export default function Login(props) {
   const uRef = useRef(null);
   const pasRef = useRef(null);
-
   function handleClick() {
-    console.log(uRef.current.value);
-    console.log(pasRef.current.value);
+   // console.log(uRef.current.value);
+//    console.log(pasRef.current.value);
     cUser(uRef.current.value,pasRef.current.value)
   }
   async function cUser(user,pass) {
@@ -23,8 +22,9 @@ export default function Login(props) {
                       x[0].innerText= "user not found!"
 
           } else {
-                      x[0].innerText="user " +user + " logged in!";  
-
+                      x[0].innerText="user " +user + " logged in!"; 
+              loggedIn.logged = true;
+              
           }
           
           

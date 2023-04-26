@@ -12,7 +12,7 @@ async function setdef(setData2,name) {
   await axios.get('http://localhost:3001/adv3/'+name)
     .then(result => {
 
-        console.log(result['data'])
+       // console.log(result['data'])
         setData2(result['data'])
     }) 
     .catch(e=>console.log(e))
@@ -31,7 +31,7 @@ export default function Profile(props) {
     const go = {'name': name}
    
   
-  console.log(data2)
+ // console.log(data2)
   useEffect(() => {setdef(setData2,name)},[])
 
     return (

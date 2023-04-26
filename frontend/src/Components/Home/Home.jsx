@@ -10,7 +10,7 @@ export default function Home(props) {
     const [error, setError] = useState("")
 
     const handleOnSearchSubmit = (event) => {
-      console.log("searchInput", event.target.value)
+     // console.log("searchInput", event.target.value)
       setSearchInput(event.target.value)
       handleOnSearchSubmitFxn(event)
     }

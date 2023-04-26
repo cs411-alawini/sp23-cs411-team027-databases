@@ -21,7 +21,8 @@ import './index.css';
 import App from './Components/App/App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
-
+const loggedIn = {logged: false}
+export default loggedIn;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
