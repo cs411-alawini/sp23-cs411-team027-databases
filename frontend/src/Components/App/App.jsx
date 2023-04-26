@@ -27,6 +27,7 @@ export default function App() {
     const [userName, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
     const [actionGames, setActionGames] = useState([])
+
     const [error, setError] = useState("")
 
     useEffect(() => {
@@ -34,8 +35,12 @@ export default function App() {
         async function requests() {
           await axios.get('http://localhost:3001/display')
             .then(result => {
+<<<<<<< HEAD
             //    console.log(result)
               //  console.log(result['data'])
+=======
+                console.log(result['data'])
+>>>>>>> 73b75545cfac2eaf53e1c25a37b3502b5775a8e3
                 setActionGames(result["data"])
             }) 
             .catch(e=>setError(e))
@@ -50,11 +55,11 @@ export default function App() {
             <Route path = "/" element ={<RootLayout />}>
                 <Route index element={<Home actionGames={actionGames}/>}/>
                 <Route path = "navbar" element={<Navbar />} />
-                <Route path = "game-profile" element={<GameProfile />} />
+                <Route path = "game-profile" element={<GameProfile userName={userName}/>} />
                 <Route path = "advancedQuery1" element={<AdvancedQuery1 />} />
                 <Route path = "advancedQuery2" element={<AdvancedQuery2 />} />
                 <Route path = "profile" element={<Profile />} />
-                <Route path = "login" element={<Login />} />
+                <Route path = "login" element={<Login setUsername={setUsername} setFirstName={setFirstName}/>} />
                 <Route path = "register" element={<Register />} />
 
 

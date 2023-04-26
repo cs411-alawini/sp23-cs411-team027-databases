@@ -22,9 +22,10 @@ export default function Login(props) {
                       x[0].innerText= "user not found!"
 
           } else {
-                      x[0].innerText="user " +user + " logged in!"; 
               loggedIn.logged = true;
               
+              x[0].innerText="user " +user + " logged in!";  
+              props.setUsername(user);
           }
           
           

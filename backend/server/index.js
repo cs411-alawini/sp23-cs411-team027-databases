@@ -24,8 +24,11 @@ var connection = mysql.createConnection({
 
 connection.connect()
 
-app.get('/search/:game',(req,res)=>{
-    var query = connection.query('SELECT GameName, Price, Description, Image FROM GameInfo WHERE GameName LIKE ?  LIMIT 50', [req.params.game], function (err, rows, fields) {
+app.get('/search/:game/:minPrice/:maxPrice',(req,res)=>{
+    let game = req.params.game 
+    let minPrice = req.params.minPrice
+    let maxPrice = req.params.maxPrice
+    var query = connection.query('CALL searchGameNameAndPrice(?, ?, ?)', [game, minPrice, maxPrice], function (err, rows, fields) {
         console.log(rows)
         res.send(rows)
 
@@ -47,7 +50,7 @@ app.get('/searchUser/:game',(req,res)=>{
 })
 
 app.get('/display',(req,res)=>{
-    var query = connection.query('SELECT DISTINCT GameName FROM GameInfo NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
+    var query = connection.query('SELECT DISTINCT GameName, Image FROM GameInfo NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
         res.send(rows)
         // console.log(rows)
     })
@@ -56,7 +59,7 @@ app.get('/display',(req,res)=>{
 //TO FINISH
 app.get('/search/highestRatedGames',(req,res)=>{
     var query = connection.query(
-        'SELECT GameName, Price, Description FROM GameInfo WHERE GameName LIKE ?  LIMIT 50'
+        'SELECT GameName, Price, Description,Image FROM GameInfo WHERE GameName LIKE ?  LIMIT 50'
         , [req.params.game], function (err, rows, fields) {
             
         res.send(rows)
@@ -112,15 +115,20 @@ app.get('/adv2',(req,res)=> {
 })
 
 
-app.get('/adv3/:foo',(req,res)=> {
-    var query = connection.query('SELECT GameName, Rating, Description, Reviews, Image FROM GameInfo Where GameName = ? LIMIT 20', req.params.foo , function (err, rows, fields) {
+app.get('/gameInfo/:gameName',(req,res)=> {
+    var query = connection.query('SELECT GameName, Rating, Description, Reviews, Image, Price FROM GameInfo Where GameName = ? LIMIT 20', req.params.gameName , function (err, rows, fields) {
         console.log("Starting Page: ", rows);
         res.send(rows)
           
      }) 
  })
 
-
+app.get('/gameReviews/:gameName',(req,res)=> {
+    var query = connection.query('SELECT userName, Review FROM Reviews WHERE GameName = ? ', req.params.gameName , function (err, rows, fields) {
+        console.log("Reviews: ", rows);
+        res.send(rows)
+     }) 
+})
 
 app.listen(3001, ()=> {
       console.log(`app is running on port 3001`);
