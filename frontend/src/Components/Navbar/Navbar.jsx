@@ -6,17 +6,7 @@ import {Flex,Box,Heading,Button,Text,Spacer,HStack} from "@chakra-ui/react"
 
 export default function Navbar(props) {
   return (
-    <Flex as="nav" p ="10px" alignItems="center" gap="100px" >
-      <Heading as="h1">Steam Recommender</Heading>
-
-      <Spacer />
-
-      <HStack spacing="20px"> {/*horizontically stacks all elements and puts spacing between*/}
-        {/* avatar for person's name, linking to profile */}
-        <Box bg="gray.200" p="10px">M</Box> 
-        <Text>divya@email.com</Text>
-        <Link colorScheme="purple" to={'/login'}>Logout</Link>
-      </HStack>
+    <Flex as="nav" p ="10px" alignItems="center" gap="100px">
     </Flex>
   )
 }

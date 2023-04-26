@@ -10,8 +10,13 @@ import {useState, useEffect, useRef} from "react"
 import { Link } from "react-router-dom";
 import axios from "axios";
 import GameProfile from "../GameProfile/GameProfile"
+import {Flex,Text,Spacer,HStack} from "@chakra-ui/react"
+import loggedIn from '../../index.js'
 
-
+function logOut() {
+    console.log("LOGGEDOUT");
+ loggedIn.logged = false;
+}
 
 export default function Home(props) {
     const [searchInput, setSearchInput] = useState("")
@@ -46,9 +51,18 @@ export default function Home(props) {
       console.log("maxPrice", event.target.value)
       setMaxPrice(event.target.value)
     }
+    
+    if (loggedIn.logged) {
+        return (
+      <div> 
+     
+            <Flex as="nav" p ="10px" alignItems="center" gap="100px" >
+      <Heading as="h1">Steam Recommender</Heading>
 
-    return (
-      <div>
+      <Spacer />
+ <Link colorScheme="purple" to={'/login'} onClick={logOut}>Logout</Link>
+            </Flex>
+          
         <Input variant='filled' placeholder = 'Search for a Game Name here!' onChange={handleOnSearchSubmit}/>
         minPrice:  
         <input className="minPrice" type="text" id="firstName" placeholder="0" onChange={handleMinPriceChange}/>
@@ -83,5 +97,55 @@ export default function Home(props) {
         }
       </div>
     )
+    } else {
+    return (
+      <div> 
+     
+            <Flex as="nav" p ="10px" alignItems="center" gap="100px" >
+      <Heading as="h1">Steam Recommender</Heading>
+
+      <Spacer />
+
+      <HStack spacing="20px"> {/*horizontically stacks all elements and puts spacing between*/}
+        {/* avatar for person's name, linking to profile */}
+        <Box bg="gray.200" p="10px">M</Box> 
+        <Link colorScheme="purple" to={'/login'}>Login</Link>
+      </HStack>
+            </Flex>
+          
+        <Input variant='filled' placeholder = 'Search for a Game Name here!' onChange={handleOnSearchSubmit}/>
+        minPrice:  
+        <input className="minPrice" type="text" id="firstName" placeholder="0" onChange={handleMinPriceChange}/>
+        maxPrice: 
+        <input className="maxPrice" type="text" id="firstName" placeholder="500" onChange={handleMaxPriceChange}/>
+
+        {searchInput == "" ? 
+          <div>
+            <Heading as='action-games' size='md'>
+              Action Games
+            </Heading>
+            <SimpleGrid columns={4} spacing={10} minChildWidth={250} padding={15}>
+              {props.actionGames.slice(0,4).map(item => 
+                <div>
+                  <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
+                  <Link className="GameName" bg="white" height="200px" border="1px solid" to="/game-profile" state={{name: item.GameName}}>{item.GameName}</Link>
+                </div>
+                )
+              }
+            </SimpleGrid>
+          </div> :
+          <div>
+            <SimpleGrid columns={4} spacing={10} minChildWidth={250} padding={15}>
+              {searchResults.map(item => 
+                <div>
+                  <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
+                  <Link className="GameName" bg="white" height="200px" border="1px solid" to="/game-profile" state={{name: item.GameName}} >{item.GameName}</Link>
+                </div>
+              )}
+            </SimpleGrid>
+          </div>
+        }
+      </div>
+    )}
 
 }
