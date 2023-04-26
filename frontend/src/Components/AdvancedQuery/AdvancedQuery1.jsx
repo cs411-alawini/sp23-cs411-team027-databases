@@ -23,10 +23,7 @@ export default function AdvancedQuery1() {
             <Button className="AQ1_button" colorTheme='blue' variant='solid' onClick={()=>AQ1_button(setData1)}>
                 Yes!
             </Button>
-            {/* {!data1 ? 
-                <div></div> :  */}
                 <div>
-                    {/* Results  */}
                     <SimpleGrid columns={4} spacing={10} minChildWidth={250} padding={15}>
                         {data1.map(item => 
                             <Box bg="white" height="200px" border="1px solid" >
@@ -35,7 +32,6 @@ export default function AdvancedQuery1() {
                         )}
                     </SimpleGrid>
                 </div>
-            {/* } */}
         </div>
     )
 }
