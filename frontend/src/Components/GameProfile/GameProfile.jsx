@@ -45,12 +45,6 @@ const Form = ({ firstFieldRef, onCancel, gameName, userName }) => {
     setReview(event.target.value);
   };
 
-  // const handleReviewSubmit = () => {
-  //   // Do something with the rating and review values here
-  //   console.log('Rating:', rating);
-  //   console.log('Review:', review);
-  // };
-
   return (
     <Stack spacing={4}>
       <TextInput label='Rating out of 100' id='rating' ref={firstFieldRef} defaultValue='' onChange={handleRatingChange}/>
@@ -97,8 +91,8 @@ async function getGameReviews(setGameReviews,name) {
 async function getGameRatings(setGameRatings,name) {
   await axios.get('http://localhost:3001/gameRating/'+name)
     .then(result => {
-        console.log("review from databse", result)
-        setGameRatings(result['data'])
+        console.log("review from databse", result['data'], result['data'][0]['Rating'])
+        setGameRatings(result['data'][0]['Rating'])
     }) 
     .catch(e=>console.log(e))
 }
@@ -114,7 +108,7 @@ export default function Profile(props) {
 
   const [data2, setData2] = useState([])
   const [gameReviews, setGameReviews] = useState([])
-  const [gameRatings, setGameRatings] = useState([])
+  const [gameRatings, setGameRatings] = useState(0)
   const go = {'name': name}
    
   console.log(data2)
@@ -123,7 +117,7 @@ export default function Profile(props) {
     getGameReviews(setGameReviews,name)
     getGameRatings(setGameRatings, name)
   },[])
-  console.log("gamerevs: ", gameReviews)
+  console.log("gameratings: ", gameRatings)
 
   return (
     <div>

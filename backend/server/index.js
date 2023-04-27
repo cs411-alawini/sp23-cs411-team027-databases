@@ -144,9 +144,7 @@ app.get('/adv2',(req,res)=> {
 
 app.get('/gameInfo/:gameName',(req,res)=> {
     var query = connection.query('SELECT GameName, Rating, Description, Reviews, Image, Price FROM GameInfo Where GameName = ? LIMIT 20', req.params.gameName , function (err, rows, fields) {
-        console.log("Starting Page: ", rows);
         res.send(rows)
-          
      }) 
  })
 
@@ -162,16 +160,27 @@ app.get('/gameRating/:gameName',(req,res)=> {
     var query = connection.query('CALL avgRating(?);', req.params.gameName , function (err, rows, fields) {
         console.log("RATINGS FROM SP: ", rows);
     }) 
-    
-    var query2 = connection.query('SELECT avg(oneRating) FROM eachRating;', req.params.gameName , function (err, rows, fields) {
-        console.log("RATINGS FROM SP2: ", rows);
-        rating = rows
+
+    var ratingCount = 0;
+    var query3 = connection.query('SELECT count(oneRating) FROM eachRating;', function (err, rows, fields) {
+        ratingCount = rows[0]['count(oneRating)']
+        console.log("rating count", ratingCount)
+
+        if(ratingCount == 0) {
+            var query3 = connection.query('SELECT Rating FROM GameInfo WHERE GameName = ?;', req.params.gameName , function (err, rows, fields) {
+                console.log("rows:", rows, rows[0], rows[0]['Rating'])
+                rating = rows[0]['Rating']
+                console.log("final rating from = 0:", rating) 
+                res.send(rows)
+            })
+        } else {
+            var query2 = connection.query('SELECT avg(oneRating) as Rating FROM eachRating;', function (err, rows, fields) {
+                rating = rows[0]['avg(oneRating)']
+                console.log("final rating from != 0:", rating) 
+                res.send(rows)
+            }) 
+        }
     }) 
-    console.log("rating from backend SP: ", rating)
-    if(rating == NULL) {
-        res.send(0)
-    }
-    res.send(rating)
 })
 
 app.listen(3001, ()=> {
