@@ -4,8 +4,7 @@ import { useRef } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
-
+import loggedIn from '../../index.js'
 
 
 export default function Profile(props) {
@@ -55,7 +54,10 @@ export default function Profile(props) {
     
 
   }
-  
+   if (loggedIn.logged == false) {
+      return (<Link to={'/login'}><Button colorScheme="green" variant="solid" >You must be logged-in, click to login</Button></Link>);
+   }
+ else {    
     return (
       <div>
         <div>
@@ -77,6 +79,6 @@ export default function Profile(props) {
         
       </div>
     )
-
+ }
     
 }

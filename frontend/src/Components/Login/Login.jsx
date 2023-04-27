@@ -1,13 +1,17 @@
 import {Box,Button,LinkBox,SimpleGrid} from "@chakra-ui/react"
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import {useRef} from 'react';
 import axios from 'axios';
-
+import {Flex,Heading,Text,Spacer,HStack} from "@chakra-ui/react"
+import { useNavigate } from 'react-router-dom';
 import "./Login.css"
+import loggedIn from '../../index.js'
+
 
 export default function Login(props) {
   const uRef = useRef(null);
   const pasRef = useRef(null);
+  const navigate = useNavigate();
 
   function handleClick() {
     console.log(uRef.current.value);
@@ -22,9 +26,16 @@ export default function Login(props) {
         if (result.data.length == 0) {
                       x[0].innerText= "user not found!"
 
-          } else {
+          } else if(result.data[0].password != pass) {
+            x[0].innerText= "invalid password!"
+
+          }
+          
+          else {
               x[0].innerText="user " +user + " logged in!";  
               props.setUsername(user);
+              loggedIn.logged = true;
+              
           }
           
           
@@ -34,7 +45,13 @@ export default function Login(props) {
   
   
   return(
+      
     <div className="form">
+          
+      
+      <Heading as="h1">Steam Recommender</Heading>
+
+     
         <div className = "login_update"></div>
         <div className="form-body">
             <div className="username">

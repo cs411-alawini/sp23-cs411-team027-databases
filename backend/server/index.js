@@ -40,7 +40,7 @@ app.get('/search/:game/:minPrice/:maxPrice',(req,res)=>{
 
 
 app.get('/searchUser/:game',(req,res)=>{
-    var query = connection.query('SELECT userName FROM User WHERE userName = ?', [req.params.game], function (err, rows, fields) {
+    var query = connection.query('SELECT password FROM User WHERE userName = ?', [req.params.game], function (err, rows, fields) {
         res.send(rows)
 
         if(err) {
