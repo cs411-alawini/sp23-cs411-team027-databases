@@ -53,7 +53,7 @@ export default function App() {
                 <Route path = "game-profile" element={<GameProfile userName={userName}/>} />
                 <Route path = "advancedQuery1" element={<AdvancedQuery1 />} />
                 <Route path = "advancedQuery2" element={<AdvancedQuery2 />} />
-                <Route path = "profile" element={<Profile />} />
+                <Route path = "profile" element={<Profile userName={userName}/>} />
                 <Route path = "login" element={<Login setUsername={setUsername} setFirstName={setFirstName}/>} />
                 <Route path = "register" element={<Register />} />
 
