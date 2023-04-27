@@ -78,6 +78,15 @@ app.get('/create/:username/:pw',(req,res)=>{
         console.log(rows)
     })
 })
+
+app.get('/createNewCreate',(req,res)=>{
+     let p = req.params.username;
+     let w = req.params.pw;
+     var query = connection.query('INSERT INTO User (userName, password) VALUES (?, ?)',[p, w], function (err, rows, fields) {
+     //   console.log(err)
+        console.log(rows)
+    })
+})
  
 app.get('/get/:username',(req,res)=>{
     var query = connection.query('SELECT * FROM User WHERE userName = ? ',[req.params.username], function (err, rows, fields) {
