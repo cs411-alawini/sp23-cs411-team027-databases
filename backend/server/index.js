@@ -49,6 +49,16 @@ app.get('/searchUser/:game',(req,res)=>{
     })
 })
 
+app.get('/fav/:us',(req,res)=>{
+    var query = connection.query('SELECT GameName, Review, Rating FROM Reviews WHERE userName = ?', [req.params.us], function (err, rows, fields) {
+        res.send(rows)
+
+        if(err) {
+            console.log(err);
+        }
+    })
+})
+
 app.get('/display',(req,res)=>{
     var query = connection.query('SELECT DISTINCT GameName, Image FROM GameInfo NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', function (err, rows, fields) {
         res.send(rows)
