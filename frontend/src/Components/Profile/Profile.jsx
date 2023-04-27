@@ -8,9 +8,10 @@ import loggedIn from '../../index.js'
 
 
 export default function Profile(props) {
+  const us = props.userName;
   const uRef = useRef(null);
   const pRef = useRef(null);
-  const urRef = useRef(null);
+
 
 
   function handleClick() {
@@ -41,12 +42,12 @@ export default function Profile(props) {
       .catch(e=>console.log(e))
   }
   function Deletef() {
-    dUser(uRef.current.value)
+    dUser(us)
     
 
   }
   function UpdateUser() { 
-    updateUser(urRef.current.value,pRef.current.value)
+    updateUser(us,pRef.current.value)
     
 
   }
@@ -60,7 +61,6 @@ export default function Profile(props) {
         <h1>Update Password</h1>
             
         <h2 className = "update_profile"></h2>
-        <input className="form__input" ref={urRef} type="text" id="firstName" placeholder="Username"/>
         <input className="form__input" ref={pRef} type="text" id="pw" placeholder="New Password"/>
 
         <Button colorScheme="green" variant="solid" onClick={UpdateUser}>Update</Button>
@@ -68,7 +68,6 @@ export default function Profile(props) {
         </div>
         <div>
         <h1>Delete User</h1>
-        <input className="form__input" ref={uRef} type="text" id="firstName" placeholder="Username"/>
         <Button colorScheme="red" variant="solid" onClick={Deletef}>Delete</Button>
         
       </div>
