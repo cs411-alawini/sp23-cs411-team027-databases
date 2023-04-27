@@ -5,12 +5,16 @@ import axios from 'axios';
 import { Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import loggedIn from '../../index.js'
+import {useState, useEffect,setError} from "react"
+import { ChakraProvider } from '@chakra-ui/react'
 
 
 export default function Profile(props) {
   const us = props.userName;
   const uRef = useRef(null);
   const pRef = useRef(null);
+  const [Fav, setFav] = useState([])
+
 
 
 
@@ -43,7 +47,8 @@ export default function Profile(props) {
   }
   function Deletef() {
     dUser(us)
-    
+    loggedIn.logged = false;
+
 
   }
   function UpdateUser() { 
@@ -51,12 +56,27 @@ export default function Profile(props) {
     
 
   }
+
+  useEffect(() => {
+    console.log("Hello")
+    async function requests() {
+      await axios.get('http://localhost:3001/fav/'+us)
+        .then(result => {
+            console.log(result['data'])
+            setFav(result["data"])
+        }) 
+        .catch(e=>setError(e))
+    }
+    requests()
+}, [])
+
    if (loggedIn.logged == false) {
       return (<Link to={'/login'}><Button colorScheme="green" variant="solid" >You must be logged-in, click to login</Button></Link>);
    }
  else {    
     return (
       <div>
+       <h>Profile</h> 
         <div>
         <h1>Update Password</h1>
             
@@ -71,9 +91,17 @@ export default function Profile(props) {
         <Button colorScheme="red" variant="solid" onClick={Deletef}>Delete</Button>
         
       </div>
+      <div>
+      <h1>My Reviews</h1>
+      <SimpleGrid columns={4} spacing={10} minChildWidth={250} padding={15}>
+        {Fav.map(item => <Box bg="gray">Game Name: {item.GameName}, Review: {item.Review}, Rating: {item.Rating}</Box>)}
+      </SimpleGrid>
+      <div>
+      </div>
         
       </div>
-    )
+      </div>
+    );
  }
     
 }
