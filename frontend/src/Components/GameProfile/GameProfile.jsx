@@ -136,7 +136,7 @@ export default function Profile(props) {
               <h1>{name} </h1>
             </div>
             <div className="kant">
-                <h1>Rating: {item.Rating} /100</h1>
+                <h1>Rating: {gameRatings} /100</h1>
             </div>
             <div className="kant">
                 <h1>Price: {item.Price} </h1>
