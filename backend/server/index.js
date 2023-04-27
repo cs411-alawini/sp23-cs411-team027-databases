@@ -56,6 +56,13 @@ app.get('/display',(req,res)=>{
     })
 })
 
+app.get('/searchUser/:us',(req,res)=>{
+    var query = connection.query('SELECT GameName, Image FROM GameInfo NATURAL JOIN GenreData WHERE Action="TRUE" LIMIT 50', [req.params.us],function (err, rows, fields) {
+        res.send(rows)
+        // console.log(rows)
+    })
+})
+
 //TO FINISH
 app.get('/search/highestRatedGames',(req,res)=>{
     var query = connection.query(
