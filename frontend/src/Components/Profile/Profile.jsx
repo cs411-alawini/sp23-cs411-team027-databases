@@ -22,12 +22,8 @@ export default function Profile(props) {
   async function dUser(user) {
     await axios.get('http://localhost:3001/delete/'+user)
       .then(result => {
-  
-          let x=document.getElementsByClassName("update_profile");
+        let x=document.getElementsByClassName("update_profile");
         x[0].innerText= user + "'s account deleted!";
-  
-  
-          
       }) 
       .catch(e=>console.log(e))
   }

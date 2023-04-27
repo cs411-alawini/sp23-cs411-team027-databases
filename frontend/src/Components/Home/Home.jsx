@@ -13,10 +13,7 @@ import GameProfile from "../GameProfile/GameProfile"
 import {Flex,Text,Spacer,HStack} from "@chakra-ui/react"
 import loggedIn from '../../index.js'
 
-function logOut() {
-    console.log("LOGGEDOUT");
- loggedIn.logged = false;
-}
+
 
 export default function Home(props) {
     const [searchInput, setSearchInput] = useState("")
@@ -29,6 +26,12 @@ export default function Home(props) {
       console.log("searchInput", event.target.value)
       setSearchInput(event.target.value)
       handleOnSearchSubmitFxn(event)
+    }
+
+    const logOut = () => {
+        console.log("LOGGEDOUT");
+        props.setUserName("")
+        loggedIn.logged = false;
     }
 
     async function handleOnSearchSubmitFxn(event) {
@@ -51,17 +54,18 @@ export default function Home(props) {
       console.log("maxPrice", event.target.value)
       setMaxPrice(event.target.value)
     }
+
+    const url = '/game-profile/'+props.userName
+    console.log("url: ", url)
     
     if (loggedIn.logged) {
-        return (
+      return (
       <div> 
-     
-            <Flex as="nav" p ="10px" alignItems="center" gap="100px" >
-      <Heading as="h1">Steam Recommender</Heading>
-
-      <Spacer />
- <Link colorScheme="purple" to={'/login'} onClick={logOut}>Logout</Link>
-            </Flex>
+        <Flex as="nav" p ="10px" alignItems="center" gap="100px" >
+          <Heading as="h1">Steam Recommender</Heading>
+          <Spacer />
+          <Link colorScheme="purple" to={'/login'} onClick={logOut}>Logout</Link>
+        </Flex>
           
         <Input variant='filled' placeholder = 'Search for a Game Name here!' onChange={handleOnSearchSubmit}/>
         minPrice:  
@@ -78,7 +82,7 @@ export default function Home(props) {
               {props.actionGames.slice(0,4).map(item => 
                 <div>
                   <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
-                  <Link className="GameName" bg="white" height="200px" border="1px solid" to="/game-profile" state={{name: item.GameName}}>{item.GameName}</Link>
+                  <Link className="GameName" bg="white" height="200px" border="1px solid" to={url} state={{name: item.GameName}}>{item.GameName}</Link>
                 </div>
                 )
               }
@@ -89,7 +93,7 @@ export default function Home(props) {
               {searchResults.map(item => 
                 <div>
                   <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
-                  <Link className="GameName" bg="white" height="200px" border="1px solid" to="/game-profile" state={{name: item.GameName}} >{item.GameName}</Link>
+                  <Link className="GameName" bg="white" height="200px" border="1px solid" to={url} state={{name: item.GameName}} >{item.GameName}</Link>
                 </div>
               )}
             </SimpleGrid>
@@ -128,7 +132,7 @@ export default function Home(props) {
               {props.actionGames.slice(0,4).map(item => 
                 <div>
                   <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
-                  <Link className="GameName" bg="white" height="200px" border="1px solid" to="/game-profile" state={{name: item.GameName}}>{item.GameName}</Link>
+                  <Link className="GameName" bg="white" height="200px" border="1px solid" to={url} state={{name: item.GameName}}>{item.GameName}</Link>
                 </div>
                 )
               }
@@ -139,7 +143,7 @@ export default function Home(props) {
               {searchResults.map(item => 
                 <div>
                   <img src={item.Image} alt="Centered" style={{ transform: 'scale(0.5)' }}/>
-                  <Link className="GameName" bg="white" height="200px" border="1px solid" to="/game-profile" state={{name: item.GameName}} >{item.GameName}</Link>
+                  <Link className="GameName" bg="white" height="200px" border="1px solid" to={url} state={{name: item.GameName}} >{item.GameName}</Link>
                 </div>
               )}
             </SimpleGrid>

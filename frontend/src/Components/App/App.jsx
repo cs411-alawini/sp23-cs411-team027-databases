@@ -48,16 +48,14 @@ export default function App() {
     const router = createBrowserRouter(
         createRoutesFromElements (
             <Route path = "/" element ={<RootLayout />}>
-                <Route index element={<Home actionGames={actionGames}/>}/>
+                <Route index element={<Home actionGames={actionGames} userName={userName} setUsername={setUsername}/>}/>
                 <Route path = "navbar" element={<Navbar />} />
-                <Route path = "game-profile" element={<GameProfile userName={userName}/>} />
+                <Route path = "game-profile/:userName" element={<GameProfile userName={userName}/>} />
                 <Route path = "advancedQuery1" element={<AdvancedQuery1 />} />
                 <Route path = "advancedQuery2" element={<AdvancedQuery2 />} />
                 <Route path = "profile" element={<Profile />} />
                 <Route path = "login" element={<Login setUsername={setUsername} setFirstName={setFirstName}/>} />
                 <Route path = "register" element={<Register />} />
-
-
             </Route>
         )
     )

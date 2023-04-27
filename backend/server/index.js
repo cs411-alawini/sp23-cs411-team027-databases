@@ -70,21 +70,32 @@ app.get('/search/highestRatedGames',(req,res)=>{
     })
 })
 
-app.get('/create/:username/:pw',(req,res)=>{
-     let p = req.params.username;
-     let w = req.params.pw;
-     var query = connection.query('INSERT INTO User (userName, password) VALUES (?, ?)',[p, w], function (err, rows, fields) {
-     //   console.log(err)
-        console.log(rows)
+app.post('/create/:username/:pw',(req,res)=>{
+    let p = req.params.username;
+    let w = req.params.pw;
+    var query = connection.query('INSERT INTO User (userName, password) VALUES (?, ?)',[p, w], function (err, rows, fields) {
+        //   console.log(err)
+        if(err) {
+        console.log(err);
+        } else {
+            console.log("user", rows)
+            res.send("created new user")
+        }
     })
 })
 
-app.get('/createNewCreate',(req,res)=>{
-     let p = req.params.username;
-     let w = req.params.pw;
-     var query = connection.query('INSERT INTO User (userName, password) VALUES (?, ?)',[p, w], function (err, rows, fields) {
-     //   console.log(err)
-        console.log(rows)
+app.post('/createNewReview/:user/:game/:review/:rating',(req,res)=>{
+     let u = req.params.user;
+     let g = req.params.game;
+     let rev = req.params.review;
+     let rating = req.params.rating;
+     var query = connection.query('INSERT INTO Reviews(userName, gameName, Review, Rating) VALUES (?, ?, ?,?)',[u,g,rev,rating], function (err, rows, fields) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("reviews", rows)
+            res.send("created new review")
+        }
     })
 })
  
@@ -94,13 +105,13 @@ app.get('/get/:username',(req,res)=>{
     })
 })
    
-app.get('/update/:username/:password',(req,res)=>{
+app.post('/update/:username/:password',(req,res)=>{
     var query = connection.query('UPDATE User SET password = ? WHERE userName = ?',[req.params.password,req.params.username], function (err, rows, fields) {
         res.send(rows)
     })
 })
 
-app.get('/delete/:username',(req,res)=>{
+app.delete('/delete/:username',(req,res)=>{
     var query = connection.query('DELETE FROM User WHERE userName = ?',req.params.username, function (err, rows, fields) {
         res.send(rows)
     })
@@ -133,7 +144,7 @@ app.get('/gameInfo/:gameName',(req,res)=> {
  })
 
 app.get('/gameReviews/:gameName',(req,res)=> {
-    var query = connection.query('SELECT userName, Review FROM Reviews WHERE GameName = ? ', req.params.gameName , function (err, rows, fields) {
+    var query = connection.query('SELECT userName, Review, Rating FROM Reviews WHERE GameName = ? ', req.params.gameName , function (err, rows, fields) {
         console.log("Reviews: ", rows);
         res.send(rows)
      }) 
