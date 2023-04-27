@@ -70,7 +70,7 @@ app.get('/search/highestRatedGames',(req,res)=>{
     })
 })
 
-app.post('/create/:username/:pw',(req,res)=>{
+app.get('/create/:username/:pw',(req,res)=>{
     let p = req.params.username;
     let w = req.params.pw;
     var query = connection.query('INSERT INTO User (userName, password) VALUES (?, ?)',[p, w], function (err, rows, fields) {
@@ -105,13 +105,13 @@ app.get('/get/:username',(req,res)=>{
     })
 })
    
-app.post('/update/:username/:password',(req,res)=>{
+app.get('/update/:username/:password',(req,res)=>{
     var query = connection.query('UPDATE User SET password = ? WHERE userName = ?',[req.params.password,req.params.username], function (err, rows, fields) {
         res.send(rows)
     })
 })
 
-app.delete('/delete/:username',(req,res)=>{
+app.get('/delete/:username',(req,res)=>{
     var query = connection.query('DELETE FROM User WHERE userName = ?',req.params.username, function (err, rows, fields) {
         res.send(rows)
     })
@@ -148,6 +148,23 @@ app.get('/gameReviews/:gameName',(req,res)=> {
         console.log("Reviews: ", rows);
         res.send(rows)
      }) 
+})
+
+app.get('/gameRating/:gameName',(req,res)=> {
+    var rating = 0; 
+    var query = connection.query('CALL avgRating(?);', req.params.gameName , function (err, rows, fields) {
+        console.log("RATINGS FROM SP: ", rows);
+    }) 
+    
+    var query2 = connection.query('SELECT avg(oneRating) FROM eachRating;', req.params.gameName , function (err, rows, fields) {
+        console.log("RATINGS FROM SP2: ", rows);
+        rating = rows
+    }) 
+    console.log("rating from backend SP: ", rating)
+    if(rating == NULL) {
+        res.send(0)
+    }
+    res.send(rating)
 })
 
 app.listen(3001, ()=> {

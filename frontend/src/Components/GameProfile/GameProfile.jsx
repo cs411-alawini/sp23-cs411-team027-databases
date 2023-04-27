@@ -94,6 +94,15 @@ async function getGameReviews(setGameReviews,name) {
     .catch(e=>console.log(e))
 }
 
+async function getGameRatings(setGameRatings,name) {
+  await axios.get('http://localhost:3001/gameRating/'+name)
+    .then(result => {
+        console.log("review from databse", result)
+        setGameRatings(result['data'])
+    }) 
+    .catch(e=>console.log(e))
+}
+
 
 export default function Profile(props) {
   const { userName } = useParams();
@@ -105,12 +114,14 @@ export default function Profile(props) {
 
   const [data2, setData2] = useState([])
   const [gameReviews, setGameReviews] = useState([])
+  const [gameRatings, setGameRatings] = useState([])
   const go = {'name': name}
    
   console.log(data2)
   useEffect(() => {
     setdef(setData2,name)
     getGameReviews(setGameReviews,name)
+    getGameRatings(setGameRatings, name)
   },[])
   console.log("gamerevs: ", gameReviews)
 
@@ -166,8 +177,8 @@ export default function Profile(props) {
                 gameReviews.map(item => {
                   return(
                   <div className='singleReview'>
-                    {item.userName}
-                    {item.Review}
+                    {item.userName},
+                    {item.Review},
                     {item.Rating}
                   </div>)
                 })
