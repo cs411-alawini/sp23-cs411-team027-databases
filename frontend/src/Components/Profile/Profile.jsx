@@ -55,7 +55,7 @@ export default function Profile(props) {
 
   }
    if (loggedIn.logged == false) {
-      return (<h1>Log in first!</h1>);
+      return (<Link to={'/login'}><Button colorScheme="green" variant="solid" >You must be logged-in, click to login</Button></Link>);
    }
  else {    
     return (
